@@ -1,0 +1,11 @@
+body {
+	font-size: 20px;
+}
+
+.glyphicon-thumbs-up {
+	cursor: pointer;
+}
+
+.task-container {
+	margin: 10px 0px 0px 0px;
+}
