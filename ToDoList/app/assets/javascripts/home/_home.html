@@ -8,22 +8,21 @@
 		<div class="col-xs-10 col-xs-offset-1 task-list-area">
 				<li ng-repeat="task in tasks | orderBy: '-importance'">
 					<div class="post-container complete-{{task.completion}}">
+						
+						
 							 
 						<h3>{{task.title}}</h3> 
 						<p>- Importance: {{task.importance}}
-							<span class="glyphicon glyphicon-thumbs-up"ng-click="incrementImportance(task)">
-							</span> 
-							<span class="glyphicon glyphicon-thumbs-down"ng-click="decreaseImportance(task)">
-							</span>
+							<span class="glyphicon glyphicon-thumbs-up" ng-click="incrementImportance(task)"></span> 
+							<span class="glyphicon glyphicon-thumbs-down" ng-click="decreaseImportance(task)"></span>
 						</p> 
+						
 						<p>- Complete: {{task.completion}}
-						<span class="glyphicon glyphicon-thumbs-up"ng-click="incrementCompletion(task)">
-						</span>
-						<span class="glyphicon glyphicon-thumbs-down"ng-click="decreaseCompletion(task)">
-						</span>
+						<span class="glyphicon glyphicon-thumbs-up" ng-click="incrementCompletion(task)"></span>
+						<span class="glyphicon glyphicon-thumbs-down" ng-click="decreaseCompletion(task)"></span>
 						</p>
-						<p style="cursor: pointer"
-							 ng-click="removeTask(task)">- Delete </p>
+						
+						<p style="cursor: pointer" ng-click="removeTask(task)">- Delete </p>
 <!--
 					<span>
 						<a href="#/tasks/{{$index}}">Comments</a>
