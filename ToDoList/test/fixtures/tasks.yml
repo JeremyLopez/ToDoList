@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  importance: 1
+  completion: 1
+  upvotes: 1
+
+two:
+  title: MyString
+  importance: 1
+  completion: 1
+  upvotes: 1
