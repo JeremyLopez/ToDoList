@@ -19,10 +19,10 @@ function($http){
 		});
 	};
 	
-	// Cannot make this work!!!
 	o.destroy = function(task) {
 		return $http.delete('/tasks/' + task.id + '.json').success(function(data){
-			console.log(task.id)
+			console.log("Task " + task.title + " has been deleted!");
+			o.getAll();
 		});
 	};
 	

@@ -9,7 +9,9 @@ class TasksController < ApplicationController
 	
 	def destroy
 		task = Task.find(params[:id])
-		task.destroy(task)
+		task.destroy
+		
+		respond_with task
   end
 
   def show

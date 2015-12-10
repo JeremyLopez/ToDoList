@@ -19,6 +19,7 @@ function($scope, tasks){
 	
 	$scope.removeTask = function(task) {
 		tasks.destroy(task);
+		
 	};
 	
 	$scope.incrementImportance = function(task) {
