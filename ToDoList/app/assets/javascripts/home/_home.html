@@ -3,23 +3,30 @@
 	<h1>To Do List:</h1>
 </div>
 
+<path fill="none" stroke="deeppink" stroke-width="14" stroke-miterlimit="0"
+  d="M11.6 269s-19.7-42.4 6.06-68.2 48.5-6.06 59.1 12.1l-3.03 28.8 209-227s45.5-21.2 60.6 1.52c15.2 22.7-3.03 47-3.03 47l-225 229s33.1-12 48.5 7.58c50 63.6-50 97-62.1 37.9"
+/>
+
 <div class="container-fluid task-container">
 	<div class="row text-center">
 		<div class="col-xs-10 col-xs-offset-1 task-list-area">
 				<li ng-repeat="task in tasks | orderBy: '-importance'">
 					<div class="post-container complete-{{task.completion}}">
 						
+<!--						<input type="checkbox" name="finished" id="finished">-->
 						
-							 
-						<h3>{{task.title}}</h3> 
+<!--						<label for="finished"></label>-->
+						
+						<h3>{{task.title}}</h3>
 						<p>- Importance: {{task.importance}}
-							<span class="glyphicon glyphicon-thumbs-up" ng-click="incrementImportance(task)"></span> 
-							<span class="glyphicon glyphicon-thumbs-down" ng-click="decreaseImportance(task)"></span>
+<!--							<span class="glyphicon glyphicon-thumbs-up" ng-click="incrementImportance(task)"></span> -->
+							<i class="icon-arrow-up" ng-click="incrementImportance(task)"></i>
+							<i class="icon-arrow-down" ng-click="decreaseImportance(task)"></i>
 						</p> 
 						
 						<p>- Complete: {{task.completion}}
-						<span class="glyphicon glyphicon-thumbs-up" ng-click="incrementCompletion(task)"></span>
-						<span class="glyphicon glyphicon-thumbs-down" ng-click="decreaseCompletion(task)"></span>
+						<i class="icon-arrow-up" ng-click="incrementCompletion(task)"></i>
+						<i class="icon-arrow-down" ng-click="decreaseCompletion(task)"></i>
 						</p>
 						
 						<p style="cursor: pointer" ng-click="removeTask(task)">- Delete </p>

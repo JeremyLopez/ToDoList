@@ -180,9 +180,10 @@
 	stroke-width: 4px;
 }
 
-/* Media Queries */
+/*
+ Media Queries 
 @media screen and (max-width: 50em) {
 	section {
 		font-size: 80%;
 	}
-}
+}*/

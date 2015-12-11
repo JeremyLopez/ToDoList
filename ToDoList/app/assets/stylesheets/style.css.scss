@@ -1,11 +1,61 @@
-body {
-	font-size: 20px;
-	max-width: 1000px;
-	margin: auto;
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+$color: #25DBFF;
+$textColor: white;//#858585;
+
+html {
+	background-color: $color;
 }
 
-.glyphicon-thumbs-up,
-.glyphicon-thumbs-down {
+input {
+	background-color: lighten($color, 20%);
+	margin-bottom: 5px;
+//	border: solid black 2px;
+	border: none;
+	color: black;
+	outline: none;
+	border-radius: 7px;
+	&:focus {
+//		border: solid black 4px;
+		outline: none;
+		line-height: 2;
+	}
+}
+
+.btn-success {
+	border-radius: 7px;
+	border: none;
+	background-color: complement($color);
+	
+	&:hover {
+		background-color: darken((complement($color)), 10%);
+	}
+	
+	&:active {
+		background-color: darken((complement($color)), 10%);
+		outline: none;
+	}
+	
+	&:focus {
+		background-color: darken((complement($color)), 10%);
+		outline: none;
+	}
+	
+	&:active:focus {
+		background-color: darken((complement($color)), 20%);
+		outline: none;
+	}
+}
+
+body {
+	font-size: 20px;
+	font-family: 'Lato';
+	max-width: 1000px;
+	margin: auto;
+	background-color: $color;
+}
+
+i {
 	cursor: pointer;
 }
 
@@ -35,11 +85,14 @@ li {
 
 .post-container {
 	padding: 10px 10px;
-	border: solid green 3px;
+//	border: solid green 3px;
 	margin-bottom: 10px;
+	background-color: darken($color, 10%);
+	border-radius: 10px;
 	
 	> h3 {
 		display: inline;
+		color: $textColor;
 	}
 	
 	> p {
@@ -53,45 +106,56 @@ li {
 }
 
 .complete-10 {
-	border-color: #20eb59;
+//	border-color: #20eb59;
+	background-color: darken($color, 10%);
 }
 
 .complete-9 {
-	border-color: #2edc53;
+//	border-color: #2edc53;
+	background-color: darken($color, 12%);
 }
 
 .complete-8 {
-	border-color: #4abf48;
+//	border-color: #4abf48;
+	background-color: darken($color, 14%);
 }
 
 .complete-7 {
-	border-color: #60a740;
+//	border-color: #60a740;
+	background-color: darken($color, 16%);
 }
 
 .complete-6 {
-	border-color: #749238;
+//	border-color: #749238;
+	background-color: darken($color, 18%);
 }
 
 .complete-5 {
-	border-color: #8d792e;
+//	border-color: #8d792e;
+	background-color: darken($color, 20%);
 }
 
 .complete-4 {
-	border-color: #ab5821;
+//	border-color: #ab5821;
+	background-color: darken($color, 22%);
 }
 
 .complete-3 {
-	border-color: #c83a16;
+//	border-color: #c83a16;
+	background-color: darken($color, 24%);
 }
 
 .complete-2 {
-	border-color: #db260e;
+//	border-color: #db260e;
+	background-color: darken($color, 26%);
 }
 
 .complete-1 {
-	border-color: #f30c04;
+//	border-color: #f30c04;
+	background-color: darken($color, 28%);
 }
 
 .complete-0 {
-	border-color: #ff0000;
+//	border-color: #ff0000;
+	background-color: darken($color, 30%);
 }
