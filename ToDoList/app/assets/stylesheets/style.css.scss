@@ -3,6 +3,16 @@
 $color: #25DBFF;
 $textColor: white;//#858585;
 
+
+.test-div {
+	height: 100px;
+}
+
+
+
+
+
+
 html {
 	background-color: $color;
 }
@@ -20,6 +30,32 @@ input {
 		outline: none;
 		line-height: 2;
 	}
+}
+
+.svg-hide {
+//	display: none;
+	visibility: hidden;
+}
+
+.svg-visible {
+	visibility: visible;
+}
+
+#squiggle {
+	position: relative;
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+	float: left;
+	margin: -11px 0 0 50px;
+	border: solid white;
+	border-radius: 50px;
+	cursor: pointer;
+}
+
+svg { 
+	postion: absolute; 
+	stroke: $textColor;
 }
 
 .btn-success {
@@ -67,6 +103,10 @@ i {
 	display: block;
 }
 
+.strike-it {
+	text-decoration: line-through;
+}
+
 form {
 	margin: 10px 0px 0px 0px;
 	> button {
@@ -84,7 +124,7 @@ li {
 }
 
 .post-container {
-	padding: 10px 10px;
+	padding: 20px 20px;
 //	border: solid green 3px;
 	margin-bottom: 10px;
 	background-color: darken($color, 10%);

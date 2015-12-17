@@ -1,3 +1,57 @@
+function animateSVG(index) {
+	var svg_container = '.squiggle-' + index + ' path';
+	var el_helper = 'svg-' + index;
+	var el = document.getElementById(el_helper);
+	var path = document.querySelector(svg_container);
+	var length = path.getTotalLength();
+	// Clear any previous transition
+	path.style.transition = path.style.WebkitTransition = 'none';
+	
+	// Set up the starting positions
+	path.style.strokeDasharray = length + ' ' + length;
+	path.style.strokeDashoffset = length;
+	el.style.visibility = "visible";
+	
+	// Trigger a layout so styles are calculated & the browser
+	// picks up the starting position before animating
+	path.getBoundingClientRect();
+	
+//	el.style.display = "inline-block";
+	
+	// Define our transition
+	path.style.transition = path.style.WebkitTransition =
+		'stroke-dashoffset 2s ease-in-out';
+	// Go!
+	path.style.strokeDashoffset = '0';
+};
+
+function animateSVGremoval(index) {
+	var svg_container = '.squiggle-' + index + ' path';
+	var el_helper = 'svg-' + index;
+	var el = document.getElementById(el_helper);
+	var path = document.querySelector(svg_container);
+	var length = path.getTotalLength();
+	// Clear any previous transition
+	path.style.transition = path.style.WebkitTransition = 'none';
+	
+	// Set up the starting positions
+	path.style.strokeDasharray = length + ' ' + length;
+	path.style.strokeDashoffset = '0';
+//	el.style.visibility = "visible";
+	
+	// Trigger a layout so styles are calculated & the browser
+	// picks up the starting position before animating
+	path.getBoundingClientRect();
+	
+//	el.style.display = "inline-block";
+	
+	// Define our transition
+	path.style.transition = path.style.WebkitTransition =
+		'stroke-dashoffset 2s ease-in-out';
+	// Go!
+	path.style.strokeDashoffset = length;
+};
+
 angular.module('toDoList')
 .factory('tasks', [
 '$http',
@@ -29,6 +83,20 @@ function($http){
 	o.upvote = function(task) {
 		return $http.put('/tasks/' + task.id + '/upvote.json').success(function(data){
 			task.importance += 1;
+		})
+	};
+	
+	o.completeMe = function(task) {
+		return $http.put('/tasks/' + task.id + '/completeMe.json').success(function(data){
+			task.clicked = true;
+//			task.completion = task.steps;
+		})
+	};
+	
+	o.uncompleteMe = function(task) {
+		return $http.put('/tasks/' + task.id + '/uncompleteMe.json').success(function(data){
+			task.clicked = false;
+//			task.completion = 0;
 		})
 	};
 	

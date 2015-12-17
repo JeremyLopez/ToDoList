@@ -25,6 +25,26 @@ class TasksController < ApplicationController
     respond_with task
   end
 	
+	def completeMe
+		task = Task.find(params[:id])
+#		WHAT GOES HERE
+		task.clicked = true
+#		task.completion = task.steps
+		task.save
+		
+		respond_with task
+	end
+	
+	def uncompleteMe
+		task = Task.find(params[:id])
+#		WHAT GOES HERE
+		task.clicked = false
+#		task.completion = 0
+		task.save
+		
+		respond_with task
+	end
+	
 	def downvote
     task = Task.find(params[:id])
 		task.decrement!(:importance)
@@ -48,7 +68,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-		params.require(:task).permit(:title, :completion, :importance)
+		params.require(:task).permit(:title, :completion, :importance, :steps, :clicked)
   end
 	
 end

@@ -1,0 +1,23 @@
+{
+  "name": "jeremylopez",
+  "description": "",
+  "main": "",
+  "authors": [
+    "JeremyLopez <jeremyy7@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/JeremyLopez/ToDoList",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-dragula": "~1.1.6",
+    "dragula.js": "dragula#~3.5.4"
+  }
+}
