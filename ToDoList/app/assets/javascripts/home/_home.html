@@ -5,8 +5,8 @@
 
 <div class="container-fluid task-container">
 	<div class="row text-center">
-		<div class="col-xs-10 col-xs-offset-1 task-list-area">
-				<li ng-repeat="task in tasks | orderBy: '-importance'">
+		<div class="col-xs-10 col-xs-offset-1 task-list-area" dragula="'first-bag'">
+				<li ng-repeat="task in tasks | orderBy: 'clicked'"><!-- | orderBy: '-importance'"> -->
 					<div class="post-container complete-{{(task.completion/task.steps) * 10 | number: 0 }}">
 						
 						<div class="squiggle-{{$index}}" ng-click="taskCompleted(task, $index)" id="squiggle">
@@ -63,11 +63,12 @@
 	<button class="btn btn-success col-xs-10 col-xs-offset-1" type="submit">Post</button>
 </form>
 
+<!--
 <div class="wrapper">
-	<div style="border: solid black 2px" dragula="'first-bag'" class="container dragula-container test-div col-md-4 col-md-offset-1" id="left">
+	<div style="border: solid black 2px" dragula="'first-bag'" class="dragula-container test-div col-md-4 col-md-offset-1" id="left">
 		<div style="border: solid black 2px">Some text</div>
 	</div>
-	<div style="border: solid blue 2px" dragula="'first-bag'" class="container dragula-container test-div col-md-4 col-md-offset-1" id="right">
+	<div style="border: solid blue 2px" dragula="'first-bag'" class="dragula-container test-div col-md-4 col-md-offset-1" id="right">
 		<div style="border: solid blue 2px">Some more text</div>
 	</div>
-</div>
+</div>-->

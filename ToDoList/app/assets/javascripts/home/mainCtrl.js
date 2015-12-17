@@ -24,10 +24,11 @@ function($scope, tasks){
 		if (task.clicked === false ) {
 			animateSVG(index);
 			tasks.completeMe(task);
-//			task.completion = task.steps;
+			task.completion = task.steps;
 		} else {
 			animateSVGremoval(index);
 			tasks.uncompleteMe(task);
+			task.completion = 0;
 		}
 	};
 	

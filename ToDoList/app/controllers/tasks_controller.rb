@@ -27,9 +27,8 @@ class TasksController < ApplicationController
 	
 	def completeMe
 		task = Task.find(params[:id])
-#		WHAT GOES HERE
 		task.clicked = true
-#		task.completion = task.steps
+		task.completion = task.steps
 		task.save
 		
 		respond_with task
@@ -39,7 +38,7 @@ class TasksController < ApplicationController
 		task = Task.find(params[:id])
 #		WHAT GOES HERE
 		task.clicked = false
-#		task.completion = 0
+		task.completion = 0
 		task.save
 		
 		respond_with task

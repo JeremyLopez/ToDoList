@@ -15,6 +15,4 @@
 //= require turbolinks
 //= require angular
 //= require angular-rails-templates
-//= require angular-dragula
-//= require dragula
 //= require_tree .
