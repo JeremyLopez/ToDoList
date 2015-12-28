@@ -30,6 +30,7 @@ gem 'responders', '~> 2.0'
 gem 'angular_rails_csrf'
 #gem 'dragula-rails', '~> 3.5', '>= 3.5.3'
 gem 'bundler', '>= 1.8.4'
+gem 'jquery-ui-rails'
 
 source 'https://rails-assets.org' do
 end

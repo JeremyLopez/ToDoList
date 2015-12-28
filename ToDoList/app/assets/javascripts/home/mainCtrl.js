@@ -75,4 +75,9 @@ function($scope, tasks){
     return val;
   };
 	
+	
+	// jQuery Work:  Need to find a better place for this!!!
+	
+	angular.element(document).find('#makeMeDraggable').draggable({cursor: 'move'});
+	
 }]);
