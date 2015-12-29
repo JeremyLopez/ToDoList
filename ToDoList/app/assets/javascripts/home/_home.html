@@ -6,7 +6,8 @@
 <div class="container-fluid task-container">
 	<div class="row text-center">
 		<div class="col-xs-10 col-xs-offset-1 task-list-area" dragula="'first-bag'">
-				<li ng-repeat="task in tasks | orderBy: 'clicked'"><!-- | orderBy: '-importance'"> -->
+				<ul class="sort-test" ui-sortable="sortableOptions" ng-model="tasks">
+				<li ng-repeat="task in tasks"> <!-- | orderBy: 'clicked'"> --> <!-- | orderBy: '-importance'"> -->
 					<div class="post-container complete-{{(task.completion/task.steps) * 10 | number: 0 }}">
 						
 						<div class="squiggle-{{$index}}" ng-click="taskCompleted(task, $index)" id="squiggle">
@@ -37,6 +38,7 @@
 						</br>
 					</div>
 				</li>
+				</ul>
 			<li>{{title}}</li>
 		</div>
 	</div>
@@ -65,11 +67,43 @@
 	<button class="btn btn-success col-xs-10 col-xs-offset-1" type="submit">Post</button>
 </form>
 
+<!--
+<div id="drag-here">
+
+</div>
+<div id="drag-here">
+
+</div>
+<div id="drag-here">
+
+</div>
+-->
+<!--
+<div ng-controller="MainCtrl" class="container">
+	<div class="sort-these">
+			<ul ui-sortable="sortableOptions" ng-model="list" class="list">
+				<li ng-repeat="item in list" class="item">
+					{{item.text}}
+				</li>
+			</ul>
+  </div>
+</div>
+-->
+
+<!--
+	<li id="item1" class="sort-item">rgergreggergergreg</li>
+	<li id="item2" class="sort-item">tytytytytytytyttyt</li>
+	<li id="item3" class="sort-item">pllplplplplplpllpl</li>
+-->
 
 
+
+<!--
 <div id="content" style="height: 400px;">
   <div id="makeMeDraggable"> </div>
 </div>
+-->
+
 <!--
 <div class="wrapper">
 	<div style="border: solid black 2px" dragula="'first-bag'" class="dragula-container test-div col-md-4 col-md-offset-1" id="left">

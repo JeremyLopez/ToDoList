@@ -2,6 +2,7 @@
 
 $color: #25DBFF;
 $textColor: white;//#858585;
+$boxColor: red;
 
 
 .test-div {
@@ -10,11 +11,39 @@ $textColor: white;//#858585;
 
 
 
+
+
+
 #makeMeDraggable {
 	width: 300px; 
 	height: 300px; 
-	background: red;
+	background: $boxColor;
+	
+	&.ui-draggable-dragging {
+		background: transparentize($boxColor, 0.5);		
+	}
 }
+
+#drag-here {
+	width: 300px;
+	height: 300px;
+	margin-top: 100px;
+	display: inline-block;
+	background: black;
+}
+
+.hovered {
+	background: white;
+}
+
+.sort-these {
+	display: block;
+	margin: 100px;
+}
+
+
+
+
 
 
 html {
@@ -123,7 +152,7 @@ ul {
 }
 
 li {
-	display: inline;
+//	display: inline;
 	padding-bottom: 10px;
 }
 
