@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 			put '/down_completion' => 'tasks#down_completion'
 			put '/completeMe' => 'tasks#completeMe'
 			put '/uncompleteMe' => 'tasks#uncompleteMe'
+			put '/moveOrder' => 'tasks#moveOrder'
 		end
 	end
 end
