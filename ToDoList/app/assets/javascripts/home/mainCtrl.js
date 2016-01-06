@@ -27,7 +27,7 @@ function($scope, tasks){
 	$scope.moveTask = function(task, pos) {
 		// I know this is wrong, trying to find out how to push new position to db
 		console.log("New position: " + pos);
-		tasks.upvote(task, pos);
+		tasks.moveOrder(task, pos);
 	};
 	
 	$scope.taskCompleted = function(task, index) {
