@@ -9,17 +9,25 @@ function($scope, tasks){
 	$scope.items = ['one', 'two', 'three'];
 	
 	$scope.addTask = function() {
+		var taskPosition = tasks.tasks.length + 1;
 		if(!$scope.title || $scope.title === '') { return; }
 		tasks.create({
 			title: $scope.title, 
 			importance: $scope.importance,
 			completion: 0,	
 			steps: $scope.steps,
-			clicked: false
+			clicked: false,
+			position: taskPosition // puts position as field in db (needs to be updated when dragged)
 		});
 		$scope.title = '';
 		$scope.importance = '';
 		$scope.steps = '';
+	};
+	
+	$scope.moveTask = function(task, pos) {
+		// I know this is wrong, trying to find out how to push new position to db
+		console.log("New position: " + pos);
+		tasks.upvote(task, pos);
 	};
 	
 	$scope.taskCompleted = function(task, index) {
@@ -77,35 +85,52 @@ function($scope, tasks){
     return val;
   };
 	
-	var tmpList = [];
-  
-  for (var i = 1; i <= 6; i++){
-    tmpList.push({
-      text: 'Item ' + i,
-      value: i
-    });
-  }
-  
-  $scope.list = tmpList;
-  
-  
-  $scope.sortingLog = [];
-  
+	
   $scope.sortableOptions = {
+		
     update: function(e, ui) {
-      var logEntry = tmpList.map(function(i){
-        return i.value;
-      }).join(', ');
-      $scope.sortingLog.push('Update: ' + logEntry);
-    },
-    stop: function(e, ui) {
+//			$scope.moveTask(ui.item.index());
+		},
+		stop: function(e, ui) {
+			// once dropped, call moveTask with the task (not yet available) and position
+			$scope.moveTask(task, ui.item.index());
+		}
+	};
+}])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//			$("#info").load("process-sortable.php?"+order); 
+//      var logEntry = tmpList.map(function(i){
+//        return i.value;
+//      }).join(', ');
+//      $scope.sortingLog.push('Update: ' + logEntry);
+	
+//    stop: function(e, ui) {
       // this callback has the changed model
-      var logEntry = tmpList.map(function(i){
-        return i.value;
-      }).join(', ');
-      $scope.sortingLog.push('Stop: ' + logEntry);
-    }
-  };
+//      var logEntry = tmpList.map(function(i){
+//        return i.value;
+//      }).join(', ');
+//      $scope.sortingLog.push('Stop: ' + logEntry);
+//    }
 	
 	
 	// jQuery Work:  Need to find a better place for this!!!
@@ -136,36 +161,36 @@ function($scope, tasks){
 //		stop: dragComplete
 //	});
 	
-}])
 
-.controller('sortableController', function ($scope) {
-  var tmpList = [];
-  
-  for (var i = 1; i <= 6; i++){
-    tmpList.push({
-      text: 'Item ' + i,
-      value: i
-    });
-  }
-  
-  $scope.list = tmpList;
-  
-  
-  $scope.sortingLog = [];
-  
-  $scope.sortableOptions = {
-    update: function(e, ui) {
-      var logEntry = tmpList.map(function(i){
-        return i.value;
-      }).join(', ');
-      $scope.sortingLog.push('Update: ' + logEntry);
-    },
-    stop: function(e, ui) {
-      // this callback has the changed model
-      var logEntry = tmpList.map(function(i){
-        return i.value;
-      }).join(', ');
-      $scope.sortingLog.push('Stop: ' + logEntry);
-    }
-  };
-});
+
+//.controller('sortableController', function ($scope) {
+//  var tmpList = [];
+//  
+//  for (var i = 1; i <= 6; i++){
+//    tmpList.push({
+//      text: 'Item ' + i,
+//      value: i
+//    });
+//  }
+//  
+//  $scope.list = tmpList;
+//  
+//  
+//  $scope.sortingLog = [];
+//  
+//  $scope.sortableOptions = {
+//    update: function(e, ui) {
+//      var logEntry = tmpList.map(function(i){
+//        return i.value;
+//      }).join(', ');
+//      $scope.sortingLog.push('Update: ' + logEntry);
+//    },
+//    stop: function(e, ui) {
+//      // this callback has the changed model
+//      var logEntry = tmpList.map(function(i){
+//        return i.value;
+//      }).join(', ');
+//      $scope.sortingLog.push('Stop: ' + logEntry);
+//    }
+//  };
+//});

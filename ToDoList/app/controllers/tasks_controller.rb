@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+	
 	def index
     respond_with Task.all
   end
@@ -25,6 +26,15 @@ class TasksController < ApplicationController
     respond_with task
   end
 	
+	def moveOrder 
+		# I know this is wrong.  mainCtrl.js function cannot even find this function?  
+		# How do I access the task while dragging
+		task = Task.find(params[:id])
+		task.position = pos
+		
+		respond_with task
+	end
+	
 	def completeMe
 		task = Task.find(params[:id])
 		task.clicked = true
@@ -36,7 +46,6 @@ class TasksController < ApplicationController
 	
 	def uncompleteMe
 		task = Task.find(params[:id])
-#		WHAT GOES HERE
 		task.clicked = false
 		task.completion = 0
 		task.save
@@ -67,7 +76,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-		params.require(:task).permit(:title, :completion, :importance, :steps, :clicked)
+		params.require(:task).permit(:title, :completion, :importance, :steps, :clicked, :position)
   end
 	
 end

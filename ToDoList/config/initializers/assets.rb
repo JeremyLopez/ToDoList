@@ -12,3 +12,4 @@ Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w( angular-dragula/dist/dragula.css )
 Rails.application.config.assets.precompile += %w( angular-ui-sortable.js )
+Rails.application.config.assets.precompile += %w( angular-ui-router.js )
