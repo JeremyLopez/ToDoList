@@ -1,9 +1,22 @@
 angular.module('toDoList')
 
+.factory('Task_factory', function($resource) {
+	return $resource('tasks/:id.json',
+									 { 'get':    {method:'GET'},
+										 'save':   {method:'POST'},
+										 'query':  {method:'GET', isArray:true},
+										 'remove': {method:'DELETE'},
+										 'delete': {method:'DELETE'},
+										 'update': {method: 'PUT'}
+									 });
+})
+
 .controller('MainCtrl', [
 '$scope',
 'tasks',
-function($scope, tasks){
+'$resource',
+'Task_factory',
+function($scope, tasks, $resource, Task_factory){
 	
 	$scope.tasks = tasks.tasks;
 	$scope.items = ['one', 'two', 'three'];
@@ -24,10 +37,33 @@ function($scope, tasks){
 		$scope.steps = '';
 	};
 	
-	$scope.moveTask = function(task, pos) {
+	$scope.moveTask = function(start_pos, end_pos) { //(task, pos) {
 		// I know this is wrong, trying to find out how to push new position to db
-		console.log("New position: " + pos);
-		tasks.moveOrder(task, pos);
+//		console.log("New position: " + pos);
+//		var w = $.get("http://localhost:3000/tasks.json");
+//		console.log(start_pos, end_pos);
+		
+		
+		
+		$.get( "http://localhost:3000/tasks.json" )
+  		.done(function( data ) {
+//				taskToChange = "http://localhost:3000/tasks/" + data[start_pos].id + ".json"
+////    		console.log(data[start_pos]);
+//				var xxx = $.get( taskToChange );
+//				console.log(xxx);
+				var task_id = data[start_pos].id;
+//				tasks.moveOrder(task_id, end_pos)
+				$scope.task = Task_factory.get({ id: task_id }, function() {
+					console.log('start: ', $scope.task.position);
+					$scope.task.position = end_pos;
+					console.log('end: ', $scope.task.position);
+					Task_factory.update(); // this is not working!!
+//					$scope.task.$update(function() {});
+				});
+			  
+  	});
+//		console.log(w);
+		//tasks.moveOrder(pos); //(task, pos);
 	};
 	
 	$scope.taskCompleted = function(task, index) {
@@ -88,15 +124,23 @@ function($scope, tasks){
 	
   $scope.sortableOptions = {
 		
-    update: function(e, ui) {
-//			$scope.moveTask(ui.item.index());
+    start: function(e, ui) {
+			var start_pos = ui.item.index();
+//			var task_id = $(this);
+//			console.log(task_id);
+			ui.item.data('start_pos', start_pos);
 		},
 		stop: function(e, ui) {
 			// once dropped, call moveTask with the task (not yet available) and position
-			$scope.moveTask(task, ui.item.index());
+//			var task_id = 
+			var start_pos = ui.item.data('start_pos');
+			var end_pos = ui.item.index();
+			$scope.moveTask(start_pos, end_pos); //(task, ui.item.index());
 		}
 	};
 }])
+
+
 
 
 

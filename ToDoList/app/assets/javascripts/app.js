@@ -1,5 +1,5 @@
 //var app = angular.module('toDoList', ['ui.router', 'templates', angularDragula(angular)])
-var app = angular.module('toDoList', ['ui.router', 'templates', 'ui.sortable'])
+var app = angular.module('toDoList', ['ui.router', 'templates', 'ui.sortable', 'ngResource'])
 
 .config([
 '$stateProvider',

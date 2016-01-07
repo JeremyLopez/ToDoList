@@ -16,4 +16,5 @@
 //= require jquery-ui
 //= require angular
 //= require angular-rails-templates
+//= require angular-resource
 //= require_tree .
