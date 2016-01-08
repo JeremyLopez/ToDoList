@@ -29,11 +29,11 @@ class TasksController < ApplicationController
 	def moveOrder 
 		# I know this is wrong.  mainCtrl.js function cannot even find this function?  
 		# How do I access the task while dragging
-		debugger
-		# task = Task.find(task_id)
-		# task.position = pos
+		
+		task = Task.find(params[:id])
+#		task.position = end_pos
 
-		# respond_with task
+		respond_with task
 	end
 
 	def completeMe

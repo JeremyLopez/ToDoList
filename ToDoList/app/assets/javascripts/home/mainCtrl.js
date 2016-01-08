@@ -42,26 +42,30 @@ function($scope, tasks, $resource, Task_factory){
 //		console.log("New position: " + pos);
 //		var w = $.get("http://localhost:3000/tasks.json");
 //		console.log(start_pos, end_pos);
-		
-		
-		
 		$.get( "http://localhost:3000/tasks.json" )
-  		.done(function( data ) {
-//				taskToChange = "http://localhost:3000/tasks/" + data[start_pos].id + ".json"
-////    		console.log(data[start_pos]);
-//				var xxx = $.get( taskToChange );
-//				console.log(xxx);
+			.done(function( data ) {
 				var task_id = data[start_pos].id;
-//				tasks.moveOrder(task_id, end_pos)
-				$scope.task = Task_factory.get({ id: task_id }, function() {
-					console.log('start: ', $scope.task.position);
-					$scope.task.position = end_pos;
-					console.log('end: ', $scope.task.position);
-					Task_factory.update(); // this is not working!!
-//					$scope.task.$update(function() {});
-				});
-			  
-  	});
+				var task = data[start_pos];
+				tasks.moveOrder(start_pos, end_pos, task)
+			});
+		
+//		$.get( "http://localhost:3000/tasks.json" )
+//  		.done(function( data ) {
+////				taskToChange = "http://localhost:3000/tasks/" + data[start_pos].id + ".json"
+//////    		console.log(data[start_pos]);
+////				var xxx = $.get( taskToChange );
+////				console.log(xxx);
+//				var task_id = data[start_pos].id;
+////				tasks.moveOrder(task_id, end_pos)
+//				$scope.task = Task_factory.get({ id: task_id }, function() {
+//					console.log('start: ', $scope.task.position);
+//					$scope.task.position = end_pos;
+//					console.log('end: ', $scope.task.position);
+//					Task_factory.update(); // this is not working!!
+////					$scope.task.$update(function() {});
+//				});
+//			  
+//  	});
 //		console.log(w);
 		//tasks.moveOrder(pos); //(task, pos);
 	};
@@ -126,16 +130,13 @@ function($scope, tasks, $resource, Task_factory){
 		
     start: function(e, ui) {
 			var start_pos = ui.item.index();
-//			var task_id = $(this);
-//			console.log(task_id);
 			ui.item.data('start_pos', start_pos);
 		},
+		
 		stop: function(e, ui) {
-			// once dropped, call moveTask with the task (not yet available) and position
-//			var task_id = 
 			var start_pos = ui.item.data('start_pos');
 			var end_pos = ui.item.index();
-			$scope.moveTask(start_pos, end_pos); //(task, ui.item.index());
+			$scope.moveTask(start_pos, end_pos);
 		}
 	};
 }])
