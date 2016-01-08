@@ -41,6 +41,10 @@ $boxColor: red;
 	margin: 100px;
 }
 
+.sort-test {
+	padding: 0;
+}
+
 
 
 
@@ -52,6 +56,8 @@ html {
 
 input {
 	background-color: lighten($color, 20%);
+	padding-right: 0px;
+	padding-left: 0px;
 	margin-bottom: 5px;
 //	border: solid black 2px;
 	border: none;
@@ -61,7 +67,7 @@ input {
 	&:focus {
 //		border: solid black 4px;
 		outline: none;
-		line-height: 2;
+//		line-height: 2;
 	}
 }
 
@@ -128,8 +134,25 @@ i {
 	cursor: pointer;
 }
 
+
+
 .task-container {
 	margin: 10px 0px 0px 0px;
+}
+
+.task-info {
+	display: inline;
+	float: right;
+	clear: none;
+	height: 68px;
+	margin-top: -11px;
+	line-height: 12px;
+	
+	> p {
+		font-size: 10px;
+		display: inline-block;
+		margin: 0;
+	}
 }
 
 .btn-success {
@@ -153,11 +176,11 @@ ul {
 
 li {
 //	display: inline;
-	padding-bottom: 10px;
+//	padding-bottom: 10px;
 }
 
 .post-container {
-	padding: 20px 20px;
+//	padding: 20px 20px;
 //	border: solid green 3px;
 	margin-bottom: 10px;
 	background-color: darken($color, 10%);
@@ -231,4 +254,8 @@ li {
 .complete-0 {
 //	border-color: #ff0000;
 	background-color: darken($color, 30%);
+}
+
+@for $i from 1 through 16 {
+  .hours-#{$i} { padding: 10px*$i 0px 10px*$i 0px }
 }

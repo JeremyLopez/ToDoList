@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 	
 	def index
-		respond_with Task.all
+		respond_with Task.all.order(:position)
 	end
 
 	def create
@@ -30,10 +30,35 @@ class TasksController < ApplicationController
 		# I know this is wrong.  mainCtrl.js function cannot even find this function?  
 		# How do I access the task while dragging
 		
-		task = Task.find(params[:id])
-#		task.position = end_pos
+		config.logger = Logger.new(STDOUT)
+		
+		movedTask = Task.find(params[:id])
+		logger.debug "movedTask: #{movedTask.id} #{movedTask.title}"
+		end_pos = params[:end_pos]
+		logger.debug "End Position: #{end_pos}"
+		
+		
+		movedTask.position = end_pos
+		movedTask.save!
+		
+		effectedTasks = []
+		
+		Task.find_each do |task|
+			if task.position >= end_pos && task.id != movedTask.id
+#				logger.debug "task: #{task.id} #{task.title}"
+				effectedTasks.push(task)
+			end
+		end
+#		
+		logger.debug "Effected Tasks: #{effectedTasks}"
+#		
+		effectedTasks.each do |task|
+			task.increment!(:position)
+		end
+		
+		
 
-		respond_with task
+		respond_with movedTask
 	end
 
 	def completeMe

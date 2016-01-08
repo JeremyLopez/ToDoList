@@ -18,11 +18,15 @@ angular.module('toDoList')
 'Task_factory',
 function($scope, tasks, $resource, Task_factory){
 	
+	
+	
 	$scope.tasks = tasks.tasks;
+//	console.log($scope.tasks);
 	$scope.items = ['one', 'two', 'three'];
 	
+	
 	$scope.addTask = function() {
-		var taskPosition = tasks.tasks.length + 1;
+		var taskPosition = tasks.tasks.length;
 		if(!$scope.title || $scope.title === '') { return; }
 		tasks.create({
 			title: $scope.title, 
@@ -37,38 +41,31 @@ function($scope, tasks, $resource, Task_factory){
 		$scope.steps = '';
 	};
 	
-	$scope.moveTask = function(start_pos, end_pos) { //(task, pos) {
+	$scope.moveTask = function(task_id, end_pos) { //(task, pos) {
 		// I know this is wrong, trying to find out how to push new position to db
 //		console.log("New position: " + pos);
 //		var w = $.get("http://localhost:3000/tasks.json");
 //		console.log(start_pos, end_pos);
+		console.log("ID: ", task_id);
 		$.get( "http://localhost:3000/tasks.json" )
 			.done(function( data ) {
-				var task_id = data[start_pos].id;
-				var task = data[start_pos];
-				tasks.moveOrder(start_pos, end_pos, task)
+//				console.log(data)
+				for ( i=0; i < data.length; i++ ) {
+//					console.log(data[i]);
+					if ( data[i].id === task_id ) {
+						var task = data[i];
+					} 
+				}
+				tasks.moveOrder(end_pos, task);
 			});
-		
-//		$.get( "http://localhost:3000/tasks.json" )
-//  		.done(function( data ) {
-////				taskToChange = "http://localhost:3000/tasks/" + data[start_pos].id + ".json"
-//////    		console.log(data[start_pos]);
-////				var xxx = $.get( taskToChange );
-////				console.log(xxx);
-//				var task_id = data[start_pos].id;
-////				tasks.moveOrder(task_id, end_pos)
-//				$scope.task = Task_factory.get({ id: task_id }, function() {
-//					console.log('start: ', $scope.task.position);
-//					$scope.task.position = end_pos;
-//					console.log('end: ', $scope.task.position);
-//					Task_factory.update(); // this is not working!!
-////					$scope.task.$update(function() {});
-//				});
-//			  
-//  	});
-//		console.log(w);
-		//tasks.moveOrder(pos); //(task, pos);
 	};
+					
+					
+					//loop through data to find correct id
+//				var task = data[start_pos];
+//				console.log(task_id);
+//				tasks.moveOrder(start_pos, end_pos, task)
+	
 	
 	$scope.taskCompleted = function(task, index) {
 		if (task.clicked === false ) {
@@ -131,12 +128,20 @@ function($scope, tasks, $resource, Task_factory){
     start: function(e, ui) {
 			var start_pos = ui.item.index();
 			ui.item.data('start_pos', start_pos);
+			var task_id = tasks.tasks[start_pos].id;
+			ui.item.data('task_id', task_id);
 		},
+		
+//		update: function(e, ui) {
+//			var start_pos = ui.item.data('start_pos');
+//		},
 		
 		stop: function(e, ui) {
 			var start_pos = ui.item.data('start_pos');
+			var task_id = ui.item.data('task_id');
 			var end_pos = ui.item.index();
-			$scope.moveTask(start_pos, end_pos);
+			console.log("Moving Task ", task_id, " to position ", end_pos)
+			$scope.moveTask(task_id, end_pos);
 		}
 	};
 }])

@@ -81,7 +81,6 @@ function($http){
 	};
 	
 	o.upvote = function(task) {
-		debugger;
 		return $http.put('/tasks/' + task.id + '/upvote.json').success(function(data){
 			task.importance += 1;
 		})
@@ -119,12 +118,12 @@ function($http){
 		})
 	};
 	
-	o.moveOrder = function(start_pos, end_pos, task) {
-		console.log(task);
-		console.log('start: ', start_pos, 'end: ', end_pos);
+	o.moveOrder = function(end_pos, task) {
+//		console.log(task);
+//		console.log('start: ', start_pos, 'end: ', end_pos);
 //		debugger;
 //		return $http.get('/tasks/' + task.id + '.json');
-		return $http.put('/tasks/' + task.id + '/moveOrder.json');//.success(function(data){
+		return $http.put('/tasks/' + task.id + '/moveOrder.json', { end_pos: end_pos });//.success(function(data){
 //			console.log(data);
 //			task.position = end_pos;		
 //		})
