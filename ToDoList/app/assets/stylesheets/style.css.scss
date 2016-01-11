@@ -3,6 +3,7 @@
 $color: #25DBFF;
 $textColor: white;//#858585;
 $boxColor: red;
+$taskContainerHeight: 480px;
 
 
 .test-div {
@@ -86,7 +87,7 @@ input {
 	height: 50px;
 	display: inline-block;
 	float: left;
-	margin: -11px 0 0 50px;
+	margin: 0 0 0 50px;
 	border: solid white;
 	border-radius: 50px;
 	cursor: pointer;
@@ -134,10 +135,41 @@ i {
 	cursor: pointer;
 }
 
+.section {
+	height: $taskContainerHeight / 8;
+//		background: green;
+	position: absolute;
+	width: 5%;
+	z-index: 10;
+	border: 1px black;
+	border-style: solid none solid none
+}
+
+#slot-0 {
+	border-top: 2px black;
+	border-bottom: 1px black;
+	border-style: solid none solid none
+}
+
+#slot-7 {
+	border-top: 1px black;
+	border-bottom: 2px black;
+	border-style: solid none solid none
+}
 
 
 .task-container {
-	margin: 10px 0px 0px 0px;
+	margin: 0px;
+	height: $taskContainerHeight;
+//	background: white;
+	
+	> .section {
+		height: $taskContainerHeight / 8;
+		background: green;
+		position: absolute;
+		width: 800px;
+		z-index: 10;
+	}
 }
 
 .task-info {
@@ -145,8 +177,8 @@ i {
 	float: right;
 	clear: none;
 	height: 68px;
-	margin-top: -11px;
-	line-height: 12px;
+	margin: 0 -265px 0 0;
+	line-height: 17px;
 	
 	> p {
 		font-size: 10px;
@@ -182,9 +214,14 @@ li {
 .post-container {
 //	padding: 20px 20px;
 //	border: solid green 3px;
-	margin-bottom: 10px;
+//	margin-bottom: 10px;
 	background-color: darken($color, 10%);
 	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 100;
+//	border: 1px solid white;
 	
 	> h3 {
 		display: inline;
@@ -201,61 +238,17 @@ li {
 	padding: 0;
 }
 
-.complete-10 {
-//	border-color: #20eb59;
-	background-color: darken($color, 10%);
-}
-
-.complete-9 {
-//	border-color: #2edc53;
-	background-color: darken($color, 12%);
-}
-
-.complete-8 {
-//	border-color: #4abf48;
-	background-color: darken($color, 14%);
-}
-
-.complete-7 {
-//	border-color: #60a740;
-	background-color: darken($color, 16%);
-}
-
-.complete-6 {
-//	border-color: #749238;
-	background-color: darken($color, 18%);
-}
-
-.complete-5 {
-//	border-color: #8d792e;
-	background-color: darken($color, 20%);
-}
-
-.complete-4 {
-//	border-color: #ab5821;
-	background-color: darken($color, 22%);
-}
-
-.complete-3 {
-//	border-color: #c83a16;
-	background-color: darken($color, 24%);
-}
-
-.complete-2 {
-//	border-color: #db260e;
-	background-color: darken($color, 26%);
-}
-
-.complete-1 {
-//	border-color: #f30c04;
-	background-color: darken($color, 28%);
-}
-
-.complete-0 {
-//	border-color: #ff0000;
-	background-color: darken($color, 30%);
+@for $i from 0 through 10 {
+	$num: 30 - ( 2 * $i );
+  .complete-#{$i} { background-color: darken($color, $num) }
 }
 
 @for $i from 1 through 16 {
-  .hours-#{$i} { padding: 10px*$i 0px 10px*$i 0px }
+//  .hours-#{$i} { padding: 10px*$i 0px 10px*$i 0px }
+	.hours-#{$i} { height: 30px*$i; line-height: 30px*$i }
+}
+
+@for $i from 0 through 7 {
+//  .hours-#{$i} { padding: 10px*$i 0px 10px*$i 0px }
+	#slot-#{$i} { top: 141px + ( ( $taskContainerHeight / 8 ) * $i ); line-height: 60px }
 }
