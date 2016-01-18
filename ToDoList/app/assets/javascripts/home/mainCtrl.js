@@ -144,6 +144,156 @@ function($scope, tasks, $resource, Task_factory){
 			$scope.moveTask(task_id, end_pos);
 		}
 	};
+	
+	$scope.draggableOptions = {
+		revert: 'invalid',
+//		snap: ".section",
+		stack: '.post-container',
+		axis: 'y'
+//		index: 
+//		stop: function(event, ui) {
+//			offset = $(this).offset();
+//			console.log(offset);
+//		}
+	};
+	
+	$scope.dragFinished = function(event, ui) {
+//		console.log(index);
+	};
+	
+	
+	
+	
+	$scope.getSection = function(pos) {
+		var top = pos.top;
+		var test = [];
+		console.log('get section');
+		
+		test.push({key: 0, value: [0, 15]});
+		
+		for (i = 1; i <= 15; i++) {
+			test.push({
+				key: i,
+				value: [i*15, i*15+15]
+			});
+		}
+		
+		for (j=0; j < test.length; j++) {
+			console.log(test[j]);
+			for (k=0; k < test[j].length; k++) {
+				console.log(test[j][k]);
+			}
+		}
+		
+		return test
+	};
+		
+//		if (0 < top <= 14 ) {
+//			return "slot-container-0"
+//		}
+//		if (14 < top <= 29 ) {
+//			return "slot-container-1"
+//		}
+//		if (29 < top <= 44 ) {
+//			return "slot-container-1"
+//		}
+//		if (44 < top <= 59 ) {
+//			return "slot-container-2"
+//		}
+//		if (59 < top <= 74 ) {
+//			return "slot-container-2"
+//		}
+//		if (74 < top <= 89 ) {
+//			return "slot-container-3"
+//		}
+//		if (89 < top <= 104 ) {
+//			return "slot-container-3"
+//		}
+//		if (104 < top <= 119 ) {
+//			return "slot-container-4"
+//		}
+//		if (119 < top <= 134 ) {
+//			return "slot-container-4"
+//		}
+//		if (134 < top <= 149 ) {
+//			return "slot-container-5"
+//		}
+//		if (149 < top <= 164 ) {
+//			return "slot-container-5"
+//		}
+//		if (164 < top <= 179 ) {
+//			return "slot-container-6"
+//		}
+//		if (179 < top <= 194 ) {
+//			return "slot-container-6"
+//		}
+//		if (194 < top <= 209 ) {
+//			return "slot-container-7"
+//		}
+//		if (209 < top <= 224 ) {
+//			return "slot-container-7"
+//		}
+//		if (224 < top <= 239 ) {
+//			return "slot-container-8"
+//		}
+//		if (239 < top <= 254 ) {
+//			return "slot-container-8"
+//		}
+//		if (254 < top <= 270 ) {
+//			return "slot-container-9"
+//		}
+//		if (254 < top <= 270 ) {
+//			return "slot-container-9"
+//		}
+//		if (254 < top <= 270 ) {
+//			return "slot-container-9"
+//		}
+//		if (254 < top <= 270 ) {
+//			return "slot-container-9"
+//		}
+//		if (254 < top <= 270 ) {
+//			return "slot-container-9"
+//		}
+//		if (254 < top <= 270 ) {
+//			return "slot-container-9"
+//		}
+//		if (254 < top <= 270 ) {
+//			return "slot-container-9"
+//		}
+	
+	$scope.dropFinished = function(event, ui) {
+		
+		console.log('index');
+		
+		
+		
+//		var drop_p = event.target;
+//		var left = angular.element(document.querySelector('#' + drop_p)).prop('offsetLeft')
+//		var top = angular.element(document.querySelector('#' + drop_p)).prop('offsetTop')
+		var drag_p = ui.position;
+//		var left_end = drop_p.left - drag_p.left + 1;
+//		var top_end = drop_p.top - drag_p.top + 1;
+//		var ang = angular.element(drop_p.id).getBoundingClientRect();
+//		console.log('drag_p left', drag_p.left);
+//		console.log('drag_p top', drag_p.top);
+//		console.log('ang left', drop_p.left);//, drag_p, left_end, top_end);
+//		console.log('ang top', drop_p.top);
+//			console.log(drag_p);
+			var section = $scope.getSection(drag_p);
+//			console.log(section);
+//			ui.draggable.animate({top: top, left: left});
+	};
+	
+//	$scope.jqyouiDraggableOptions = {
+//		animate: true,
+//		onStop: dragFinished()
+//	};
+	
+	$scope.droppableOptions = {
+//		accept: '.post-container'
+//		tolerance: 'intersect'
+	};
+	
 }])
 
 

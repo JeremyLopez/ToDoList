@@ -3,29 +3,48 @@
 	<h1>To Do List:</h1>
 </div>
 
+
+
 <div class="container-fluid task-container">
-	
-	
-	
-	
-	
-	
 	<div class="row text-center">
-		
-		<div class="col-xs-1 section" id="slot-0">9-10</div>
-		<div class="col-xs-1 section" id="slot-1">10-11</div>
-		<div class="col-xs-1 section" id="slot-2">11-12</div>
-		<div class="col-xs-1 section" id="slot-3">12-1</div>
-		<div class="col-xs-1 section" id="slot-4">1-2</div>
-		<div class="col-xs-1 section" id="slot-5">2-3</div>
-		<div class="col-xs-1 section" id="slot-6">3-4</div>
-		<div class="col-xs-1 section" id="slot-7">4-5</div>
-		
-		
-		<div class="col-xs-10 col-xs-offset-1 task-list-area" dragula="'first-bag'">
-				<ul class="sort-test" ui-sortable="sortableOptions" ng-model="tasks">
+		<div class="col-xs-10 col-xs-offset-1 task-list-area">
+			<div class="contain-me-here">
+			<div class="col-xs-1 time-space" id="slot-0">9-10</div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-0"></div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-1"></div>
+			
+			<div class="col-xs-1 time-space" id="slot-1">10-11</div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-2"></div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-3"></div>
+			
+			<div class="col-xs-1 time-space" id="slot-2">11-12</div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-4"></div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-5"></div>
+			
+			<div class="col-xs-1 time-space" id="slot-3">12-1</div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-6"></div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-7"></div>
+			
+			<div class="col-xs-1 time-space" id="slot-4">1-2</div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-8"></div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-9"></div>
+			
+			<div class="col-xs-1 time-space" id="slot-5">2-3</div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-10"></div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-11"></div>
+			
+			<div class="col-xs-1 time-space" id="slot-6">3-4</div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-12"></div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-13"></div>
+			
+			<div class="col-xs-1 time-space" id="slot-7">4-5</div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-14"></div>
+			<div class="col-xs-12 section" jqyoui-droppable="{onDrop: 'dropFinished'}" data-jqyoui-options="droppableOptions" data-drop="true" jqyoui-droppable id="slot-container-15"></div>
+			</div>
+			
+				<ul class="sort-test" ng-model="tasks">
 				<li ng-repeat="task in tasks"> <!--| orderBy: 'position'"> <!-- | orderBy: 'clicked'"> --> <!-- | orderBy: '-importance'"> -->
-					<div class="post-container hours-{{task.steps*2}} complete-{{(task.completion/task.steps) * 10 | number: 0 }}">
+					<div data-drag="true" jqyoui-draggable="{onStop: 'dragFinished'}" data-jqyoui-options="draggableOptions" jqyoui-draggable class="post-container hours-{{task.steps*2}} complete-{{(task.completion/task.steps) * 10 | number: 0 }}">
 						
 						<div class="squiggle-{{$index}}" ng-click="taskCompleted(task, $index)" id="squiggle">
 							<svg ng-class="{'svg-visible': task.clicked, 'svg-hide': !task.clicked}" id="svg-{{$index}}" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -96,6 +115,10 @@
 	<button class="btn btn-success col-xs-10 col-xs-offset-1" type="submit">Post</button>
 </form>
 
+<!--
+<div class="drop-me-here" data-drop="true" jqyoui-droppable>
+		</div>
+-->
 
 <!--
 <div id="drag-here">
